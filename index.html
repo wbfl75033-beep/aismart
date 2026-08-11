@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- 브라우저 탭 제목 (원하면 수정) -->
   <title>FP파트너즈 · AI 스마트 시험 스테이션</title>
   <meta name="description" content="휴대폰 하나로 훈련시키는 합격 치트키 — AI 스마트 시험 스테이션" />
 
@@ -28,42 +27,49 @@
       font-family: "Pretendard Variable", Pretendard, -apple-system,
                    "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", sans-serif;
       -webkit-font-smoothing: antialiased;
+      /* 하단 고정 버튼에 내용이 가려지지 않도록 여백 확보 */
+      padding-bottom: 104px;
     }
 
     /* 카드뉴스: 가운데 정렬 세로 컬럼 (모바일 폭 기준 최대 500px) */
     .cards {
       max-width: 500px;
       margin: 0 auto;
-      font-size: 0;              /* 이미지 사이 미세 여백 제거 */
+      font-size: 0;
     }
 
     .cards img {
       display: block;
       width: 100%;
       height: auto;
-      /* 스크롤 시 살짝 나타나는 효과 */
       opacity: 0;
       transform: translateY(16px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
     .cards img.on { opacity: 1; transform: none; }
 
-    /* 맨 끝 버튼 영역 */
-    .cta {
-      max-width: 500px;
-      margin: 0 auto;
-      padding: 48px 22px 72px;
-      text-align: center;
+    /* ▼ 화면 하단에 항상 떠 있는 고정 버튼 바 ▼ */
+    .cta-bar {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+      background: rgba(245, 247, 251, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 -6px 24px rgba(20, 40, 80, 0.10);
     }
 
-    .cta .btn {
+    .cta-bar .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
       width: 100%;
-      max-width: 420px;
-      padding: 20px 28px;
+      max-width: 460px;
+      padding: 18px 28px;
       background: linear-gradient(135deg, var(--btn-1) 0%, var(--btn-2) 100%);
       color: #ffffff;
       font-family: inherit;
@@ -71,25 +77,25 @@
       font-weight: 700;
       letter-spacing: -0.02em;
       text-decoration: none;
-      border-radius: 999px;      /* 알약형 */
-      box-shadow: 0 8px 24px rgba(31, 107, 255, 0.28),
+      border-radius: 999px;
+      box-shadow: 0 8px 24px rgba(31, 107, 255, 0.30),
                   inset 0 1px 0 rgba(255, 255, 255, 0.28);
       transition: transform 0.18s ease, box-shadow 0.18s ease;
     }
-    .cta .btn:hover {
+    .cta-bar .btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 14px 34px rgba(31, 107, 255, 0.4),
+      box-shadow: 0 14px 34px rgba(31, 107, 255, 0.42),
                   inset 0 1px 0 rgba(255, 255, 255, 0.32);
     }
-    .cta .btn:focus-visible { outline: 3px solid var(--btn-1); outline-offset: 3px; }
+    .cta-bar .btn:focus-visible { outline: 3px solid var(--btn-1); outline-offset: 3px; }
 
-    .cta .btn .arrow { transition: transform 0.18s ease; }
-    .cta .btn:hover .arrow { transform: translateX(5px); }
+    .cta-bar .btn .arrow { transition: transform 0.18s ease; }
+    .cta-bar .btn:hover .arrow { transform: translateX(5px); }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .cards img { opacity: 1; transform: none; transition: none; }
-      .cta .btn, .cta .btn .arrow { transition: none; }
+      .cta-bar .btn, .cta-bar .btn .arrow { transition: none; }
     }
   </style>
 </head>
@@ -106,15 +112,14 @@
     <img src="https://i.ibb.co/FbmC9Mdw/7.png" alt="휴대폰 하나로 훈련시키는 합격 치트키 aismart-exam.com" />
   </div>
 
-  <!-- ▼ 맨 끝 버튼 ▼  href의 주소를 바꾸면 연결 링크가 바뀝니다. -->
-  <div class="cta">
+  <!-- ▼ 화면 하단에 항상 뜨는 버튼 ▼  href 주소를 바꾸면 연결 링크가 바뀝니다. -->
+  <div class="cta-bar">
     <a class="btn" href="https://fppartners.co.kr/examTest_login.php" target="_blank" rel="noopener">
       지금 바로 시작하기 <span class="arrow">→</span>
     </a>
   </div>
 
   <script>
-    // 스크롤 시 카드가 부드럽게 나타나는 효과
     (function () {
       var imgs = document.querySelectorAll('.cards img');
       if (!('IntersectionObserver' in window)) {
