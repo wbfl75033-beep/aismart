@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- 브라우저 탭 제목 (원하면 수정) -->
+  <title>FP파트너즈 · AI 스마트 시험 스테이션</title>
+  <meta name="description" content="휴대폰 하나로 훈련시키는 합격 치트키 — AI 스마트 시험 스테이션" />
+
+  <style>
+    :root {
+      --bg: #0a1836;            /* 카드 배경과 맞춘 남색 */
+      --accent-1: #1f9bff;      /* 버튼 시안-블루 */
+      --accent-2: #37d3ff;
+      --btn-text: #ffffff;
+      --sub-text: #9fc4ff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      font-family: -apple-system, "Apple SD Gothic Neo", "Malgun Gothic",
+                   "맑은 고딕", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 카드뉴스: 가운데 정렬 세로 컬럼 (모바일 폭 기준 최대 500px) */
+    .cards {
+      max-width: 500px;
+      margin: 0 auto;
+      font-size: 0;              /* 이미지 사이 미세 여백 제거 */
+    }
+
+    .cards img {
+      display: block;
+      width: 100%;
+      height: auto;
+      /* 스크롤 시 살짝 나타나는 효과 (움직임 최소화 설정 시 자동 해제) */
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .cards img.on { opacity: 1; transform: none; }
+
+    /* 맨 끝 버튼 영역 */
+    .cta {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 40px 22px 64px;
+      text-align: center;
+    }
+
+    .cta .btn {
+      display: block;
+      width: 100%;
+      padding: 20px 24px;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      color: var(--btn-text);
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      text-decoration: none;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(55, 211, 255, 0.35);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .cta .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(55, 211, 255, 0.5);
+    }
+    .cta .btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+
+    /* 전화 연결 (보조 버튼) */
+    .cta .call {
+      display: inline-block;
+      margin-top: 16px;
+      color: var(--sub-text);
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .cta .call:hover { color: #fff; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .cards img { opacity: 1; transform: none; transition: none; }
+      .cta .btn { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ▼ 카드뉴스 이미지 (1~7번). 파일 이름이 이 목록과 정확히 같아야 합니다 ▼ -->
+  <div class="cards">
+    <img src="1.png" alt="설계사 등록시험 합격률이 고민이신가요?" />
+    <img src="2.png" alt="설계사 등록시험의 불편한 현실" />
+    <img src="3.png" alt="AI 스마트 시험 스테이션이 한 번에 해결합니다" />
+    <img src="4.png" alt="시험 준비의 4가지 핵심 포인트" />
+    <img src="5.png" alt="틀린 문제만 알 때까지 반복 학습" />
+    <img src="6.png" alt="시험 공포증 해소, 도입 성공률 상승" />
+    <img src="7.png" alt="휴대폰 하나로 훈련시키는 합격 치트키 aismart-exam.com" />
+  </div>
+
+  <!-- ▼ 맨 끝 버튼 ▼
+       href의 주소를 바꾸면 연결 링크가 바뀝니다.
+       전화 버튼이 필요 없으면 <a class="call"> 줄을 지우세요. -->
+  <div class="cta">
+    <a class="btn" href="https://aismart-exam.com" target="_blank" rel="noopener">
+      지금 바로 시작하기 →
+    </a>
+    <a class="call" href="tel:0225251686">📞 문의 02-525-1686</a>
+  </div>
+
+  <script>
+    // 스크롤 시 카드가 부드럽게 나타나는 효과
+    (function () {
+      var imgs = document.querySelectorAll('.cards img');
+      if (!('IntersectionObserver' in window)) {
+        imgs.forEach(function (el) { el.classList.add('on'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12 });
+      imgs.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+
+</body>
+</html>
