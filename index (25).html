@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>FP파트너즈 · AI 스마트 시험 스테이션</title>
+  <meta name="description" content="휴대폰 하나로 훈련시키는 합격 치트키 — AI 스마트 시험 스테이션" />
+
+  <!-- 모던 한글 폰트 Pretendard -->
+  <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+
+  <style>
+    :root {
+      --bg: #f5f7fb;            /* 밝은 화이트 톤 배경 */
+      --btn-1: #1f6bff;         /* 버튼 그라데이션 (진한 블루) */
+      --btn-2: #22c7ff;         /* 버튼 그라데이션 (밝은 시안) */
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      font-family: "Pretendard Variable", Pretendard, -apple-system,
+                   "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      /* 하단 고정 버튼에 내용이 가려지지 않도록 여백 확보 */
+      padding-bottom: 104px;
+    }
+
+    /* 카드뉴스: 가운데 정렬 세로 컬럼 (모바일 폭 기준 최대 500px) */
+    .cards {
+      max-width: 500px;
+      margin: 0 auto;
+      font-size: 0;
+    }
+
+    .cards img {
+      display: block;
+      width: 100%;
+      height: auto;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .cards img.on { opacity: 1; transform: none; }
+
+    /* ▼ 화면 하단에 항상 떠 있는 고정 버튼 바 ▼ */
+    .cta-bar {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+      background: rgba(245, 247, 251, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 -6px 24px rgba(20, 40, 80, 0.10);
+    }
+
+    .cta-bar .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 460px;
+      padding: 18px 28px;
+      background: linear-gradient(135deg, var(--btn-1) 0%, var(--btn-2) 100%);
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      border-radius: 999px;
+      box-shadow: 0 8px 24px rgba(31, 107, 255, 0.30),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.28);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .cta-bar .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(31, 107, 255, 0.42),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.32);
+    }
+    .cta-bar .btn:focus-visible { outline: 3px solid var(--btn-1); outline-offset: 3px; }
+
+    .cta-bar .btn .arrow { transition: transform 0.18s ease; }
+    .cta-bar .btn:hover .arrow { transform: translateX(5px); }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .cards img { opacity: 1; transform: none; transition: none; }
+      .cta-bar .btn, .cta-bar .btn .arrow { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ▼ 카드뉴스 이미지 (imgbb 링크). 이미지를 바꾸려면 src 주소만 교체하세요 ▼ -->
+  <div class="cards">
+    <img src="https://i.ibb.co/8g3tS4nr/1.png" alt="설계사 등록시험 합격률이 고민이신가요?" />
+    <img src="https://i.ibb.co/8nrrQRjd/2.png" alt="설계사 등록시험의 불편한 현실" />
+    <img src="https://i.ibb.co/5W3x8pqw/3.png" alt="AI 스마트 시험 스테이션이 한 번에 해결합니다" />
+    <img src="https://i.ibb.co/d0R1hWq7/4.png" alt="시험 준비의 4가지 핵심 포인트" />
+    <img src="https://i.ibb.co/NgLDYbDH/5.png" alt="틀린 문제만 알 때까지 반복 학습" />
+    <img src="https://i.ibb.co/ZRJmLPhH/6.png" alt="시험 공포증 해소, 도입 성공률 상승" />
+    <img src="https://i.ibb.co/FbmC9Mdw/7.png" alt="휴대폰 하나로 훈련시키는 합격 치트키 aismart-exam.com" />
+  </div>
+
+  <!-- ▼ 화면 하단에 항상 뜨는 버튼 ▼  href 주소를 바꾸면 연결 링크가 바뀝니다. -->
+  <div class="cta-bar">
+    <a class="btn" href="https://fppartners.co.kr/examTest_login.php" target="_blank" rel="noopener">
+      지금 바로 시작하기 <span class="arrow">→</span>
+    </a>
+  </div>
+
+  <script>
+    (function () {
+      var imgs = document.querySelectorAll('.cards img');
+      if (!('IntersectionObserver' in window)) {
+        imgs.forEach(function (el) { el.classList.add('on'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12 });
+      imgs.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+
+</body>
+</html>
