@@ -8,13 +8,15 @@
   <title>FP파트너즈 · AI 스마트 시험 스테이션</title>
   <meta name="description" content="휴대폰 하나로 훈련시키는 합격 치트키 — AI 스마트 시험 스테이션" />
 
+  <!-- 모던 한글 폰트 Pretendard -->
+  <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+
   <style>
     :root {
-      --bg: #0a1836;            /* 카드 배경과 맞춘 남색 */
-      --accent-1: #1f9bff;      /* 버튼 시안-블루 */
-      --accent-2: #37d3ff;
-      --btn-text: #ffffff;
-      --sub-text: #9fc4ff;
+      --bg: #f5f7fb;            /* 밝은 화이트 톤 배경 */
+      --btn-1: #1f6bff;         /* 버튼 그라데이션 (진한 블루) */
+      --btn-2: #22c7ff;         /* 버튼 그라데이션 (밝은 시안) */
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -23,8 +25,8 @@
 
     body {
       background: var(--bg);
-      font-family: -apple-system, "Apple SD Gothic Neo", "Malgun Gothic",
-                   "맑은 고딕", sans-serif;
+      font-family: "Pretendard Variable", Pretendard, -apple-system,
+                   "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", sans-serif;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -39,7 +41,7 @@
       display: block;
       width: 100%;
       height: auto;
-      /* 스크롤 시 살짝 나타나는 효과 (움직임 최소화 설정 시 자동 해제) */
+      /* 스크롤 시 살짝 나타나는 효과 */
       opacity: 0;
       transform: translateY(16px);
       transition: opacity 0.6s ease, transform 0.6s ease;
@@ -50,51 +52,50 @@
     .cta {
       max-width: 500px;
       margin: 0 auto;
-      padding: 40px 22px 64px;
+      padding: 48px 22px 72px;
       text-align: center;
     }
 
     .cta .btn {
-      display: block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       width: 100%;
-      padding: 20px 24px;
-      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-      color: var(--btn-text);
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -0.3px;
+      max-width: 420px;
+      padding: 20px 28px;
+      background: linear-gradient(135deg, var(--btn-1) 0%, var(--btn-2) 100%);
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
       text-decoration: none;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(55, 211, 255, 0.35);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      border-radius: 999px;      /* 알약형 */
+      box-shadow: 0 8px 24px rgba(31, 107, 255, 0.28),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.28);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
     }
     .cta .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 40px rgba(55, 211, 255, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(31, 107, 255, 0.4),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.32);
     }
-    .cta .btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+    .cta .btn:focus-visible { outline: 3px solid var(--btn-1); outline-offset: 3px; }
 
-    /* 전화 연결 (보조 버튼) */
-    .cta .call {
-      display: inline-block;
-      margin-top: 16px;
-      color: var(--sub-text);
-      font-size: 16px;
-      font-weight: 600;
-      text-decoration: none;
-    }
-    .cta .call:hover { color: #fff; }
+    .cta .btn .arrow { transition: transform 0.18s ease; }
+    .cta .btn:hover .arrow { transform: translateX(5px); }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .cards img { opacity: 1; transform: none; transition: none; }
-      .cta .btn { transition: none; }
+      .cta .btn, .cta .btn .arrow { transition: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ▼ 카드뉴스 이미지 (1~7번). 파일 이름이 이 목록과 정확히 같아야 합니다 ▼ -->
+  <!-- ▼ 카드뉴스 이미지 (imgbb 링크). 이미지를 바꾸려면 src 주소만 교체하세요 ▼ -->
   <div class="cards">
     <img src="https://i.ibb.co/8g3tS4nr/1.png" alt="설계사 등록시험 합격률이 고민이신가요?" />
     <img src="https://i.ibb.co/8nrrQRjd/2.png" alt="설계사 등록시험의 불편한 현실" />
@@ -105,12 +106,10 @@
     <img src="https://i.ibb.co/FbmC9Mdw/7.png" alt="휴대폰 하나로 훈련시키는 합격 치트키 aismart-exam.com" />
   </div>
 
-  <!-- ▼ 맨 끝 버튼 ▼
-       href의 주소를 바꾸면 연결 링크가 바뀝니다.
-       전화 버튼이 필요 없으면 <a class="call"> 줄을 지우세요. -->
+  <!-- ▼ 맨 끝 버튼 ▼  href의 주소를 바꾸면 연결 링크가 바뀝니다. -->
   <div class="cta">
     <a class="btn" href="https://fppartners.co.kr/examTest_login.php" target="_blank" rel="noopener">
-      지금 바로 시작하기 →
+      지금 바로 시작하기 <span class="arrow">→</span>
     </a>
   </div>
 
